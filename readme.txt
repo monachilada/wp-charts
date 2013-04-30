@@ -56,22 +56,28 @@ the basic shortcode is `[wp_charts]` which on its own should not produce anythin
 
 # Example Shortcode Usage #
 
-Pie Chart
+	Pie Chart
+
 	[wp_charts title="mypie" type="pie" align="alignright" margin="5px 20px" data="10,32,50,25,5"]
 
-Doughnut Chart
+	Doughnut Chart
+
 	[wp_charts title="mydough" type="doughnut" align="alignleft" margin="5px 20px" data="30,10,55,25,15,8" colors="69D2E7,#E0E4CC,#F38630,#96CE7F,#CEBC17,#CE4264"]
 
-Polar Area Chart
+	Polar Area Chart
+
 	[wp_charts title="mypolar" type="polarArea" align="alignright" margin="5px 20px" data="40,32,5,25,50,45" labels="one,two,three,four,five,six"]
 
-Bar Chart
+	Bar Chart
+
 	[wp_charts title="barchart" type="bar" align="alignleft" margin="5px 20px" datasets="40,32,50,35 next 20,25,45,42 next 40,43, 61,50 next 33,15,40,22" labels="one,two,three,four"]
 
-Line Chart
+	Line Chart
+
 	[wp_charts title="linechart" type="line" align="alignright" margin="5px 20px" datasets="40,43,61,50 next 33,15,40,22" labels="one,two,three,four"]
 
-Radar Chart
+	Radar Chart
+
 	[wp_charts title="radarchart" type="radar" align="alignleft" margin="5px 20px" datasets="20,22,40,25,55 next 15,20,30,40,35" labels="one,two,three,four,five" colors="#CEBC17,#CE4264"]
 
 # All Shortcode Attributes #
