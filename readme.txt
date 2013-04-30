@@ -13,7 +13,7 @@ Create amazing HTML5 charts easily in WordPress. A flexible and lightweight Word
 
 Create amazing HTML5 charts easily in WordPress. A flexible and lightweight WordPress chart plugin including 6 customizable chart types (line, bar, pie, radar, polar area and doughnut types) as well as a fallback to provide support for older IE.
 
-Incorporates the fantastic chart.js script : [http://www.chartjs.org/](http://www.chartjs.org/)
+Incorporates the fantastic chart.js script : [http://www.chartjs.org/](http://www.chartjs.org/) created by Nivk Downie.
 
 ### 6 Chart types ###
 Visualise your data in different ways. Each of them animated, fully customisable and look great, even on retina displays.
@@ -24,31 +24,57 @@ Chart.js uses the HTML5 canvas element. It supports all modern browsers, and pol
 ### Simple and Flexible ###
 Chart.js is dependency free, lightweight (4.5k when minified and gzipped) and offers loads of customisation options.
 
-= Features Coming Soon =
+(above descriptions taken from chartjs.org)
+
+
+### Features Coming Soon ###
 * Editor admin pop up to make creating beautiful charts faster than you can say user friendly
 * Color palette themes for quick stylish data
 * Plugin Options for extensive chart control (just for you fiddly folk)
 
 == Installation ==
+# Installation #
 
-Easy
+### Easy ###
 1.Search WP charts via plugins > add new, or upload.
 2.find the plugin listed and click activate.
 3. For Now  - Use the Shortcodes for fun and profit
 
-Not So Easy
+### Not So Easy ###
 1. Fire up your favourite FTP and upload `wp_charts folder` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. For Now  - Use the Shortcodes for fun and profit
 
-=Basic Concept=
+# Usage #
+
+### Basic Concept ###
 the basic shortcode is `[wp_charts]` which on its own should not produce anything. you will need to add properities to the shotcode for it to work.  The format for shortcode properties is `property="somthing"`.  for example, each chart needs a title and a type, so we would start by putting the following into the wordpress editor : `[wp_charts title="any title" type="pie"]`.  Different Charts require different specific basic properties, as described below.  Further you can see a full list of properties with descriptions as well.
 
-=Important=
+###Important ###
 * Every chart reuqires a type, title and data or datasets attributes.
-* if you're using a Pie, Doughnut, or PolarArea chart type you must use the data shortcode attribute (as these are 1 dimensional charts), where as if you're using the Bar, Line or Radar chart types you must use the datasets attribute (as these types are multidimentional).
+* if you're using a Pie, Doughnut, or PolarArea chart type you must use the data shortcode attribute (as these are 1 dimensional charts), where as if you're using the Bar, Line or Radar chart types you must use the datasets attribute (as these types are multidimentional).  Also note that datasets are seperated using the next keyword as shown in the examples below.
 
-=All Shortcode Attributes=
+# Example Shortcode Usage #
+
+Pie Chart
+	[wp_charts title="mypie" type="pie" align="alignright" margin="5px 20px" data="10,32,50,25,5"]
+
+Doughnut Chart
+	[wp_charts title="mydough" type="doughnut" align="alignleft" margin="5px 20px" data="30,10,55,25,15,8" colors="69D2E7,#E0E4CC,#F38630,#96CE7F,#CEBC17,#CE4264"]
+
+Polar Area Chart
+	[wp_charts title="mypolar" type="polarArea" align="alignright" margin="5px 20px" data="40,32,5,25,50,45" labels="one,two,three,four,five,six"]
+
+Bar Chart
+	[wp_charts title="barchart" type="bar" align="alignleft" margin="5px 20px" datasets="40,32,50,35 next 20,25,45,42 next 40,43, 61,50 next 33,15,40,22" labels="one,two,three,four"]
+
+Line Chart
+	[wp_charts title="linechart" type="line" align="alignright" margin="5px 20px" datasets="40,43,61,50 next 33,15,40,22" labels="one,two,three,four"]
+
+Radar Chart
+	[wp_charts title="radarchart" type="radar" align="alignleft" margin="5px 20px" datasets="20,22,40,25,55 next 15,20,30,40,35" labels="one,two,three,four,five" colors="#CEBC17,#CE4264"]
+
+# All Shortcode Attributes #
 
 	'type'             = "pie"
 	choose from pie, doughnut, radar, polararea, bar, line
@@ -108,7 +134,7 @@ Not since you poked it with your fat sticky finger, but I will eat this here ele
 
 == Screenshots ==
 
-screenshots coming soon.
+1. All Charts being used on a single page, in the default 2012 theme.
 
 == Changelog ==
 
