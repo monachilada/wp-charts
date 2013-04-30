@@ -3,7 +3,7 @@
 Plugin Name: WordPress Charts
 Plugin URI: http://nonacreative.com/
 Description: Create amazing HTML5 charts easily in WordPress. A flexible and lightweight WordPress chart plugin including 6 customizable chart types (line, bar, pie, radar, polar area and doughnut types) as well as a fallback to provide support for older IE.  Incorporates the fantastic chart.js script : http://www.chartjs.org/.
-Version: 0.4
+Version: 0.5.1
 Author:  Paul van Zyl
 Author URI: http://nonacreative.com/
 */
@@ -39,7 +39,6 @@ Author URI: http://nonacreative.com/
 // - - - - - - - - - - - - - - - - - - - - - - -
 function wp_charts_html5_support () {
     echo '<!--[if lt IE 8]>';
-    echo '<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>';
     echo '<script src="'.plugins_url( '/js/excanvas.compiled.js', __FILE__ ).'"</script>';
     echo '<![endif]-->';
     echo '	<style>
