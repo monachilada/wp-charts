@@ -3,7 +3,7 @@ Contributors: Paul van Zyl
 Tags: html5, canvas, charts, chart js, visualisation
 Requires at least: 3.0.1
 Tested up to: 3.5.1
-Stable tag: 0.5
+Stable tag: 0.5.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,9 +55,8 @@ the basic shortcode is `[wp_charts]` which on its own should not produce anythin
 * if you're using a Pie, Doughnut, or PolarArea chart type you must use the data shortcode attribute (as these are 1 dimensional charts), where as if you're using the Bar, Line or Radar chart types you must use the datasets attribute (as these types are multidimentional).  Also note that datasets are seperated using the next keyword as shown in the examples below.
 
 # Example Shortcode Usage #
-
+``
 	Pie Chart
-
 	[wp_charts title="mypie" type="pie" align="alignright" margin="5px 20px" data="10,32,50,25,5"]
 
 	Doughnut Chart
@@ -79,6 +78,7 @@ the basic shortcode is `[wp_charts]` which on its own should not produce anythin
 	Radar Chart
 
 	[wp_charts title="radarchart" type="radar" align="alignleft" margin="5px 20px" datasets="20,22,40,25,55 next 15,20,30,40,35" labels="one,two,three,four,five" colors="#CEBC17,#CE4264"]
+``
 
 # All Shortcode Attributes #
 
@@ -89,7 +89,7 @@ the basic shortcode is `[wp_charts]` which on its own should not produce anythin
 	each chart requires a uniqe title. (note that the title should be unique on the page if you are using multiple charts on the same page)
 
 	'width'			   = "45%"
-	optional - This sets te width of the container for the chart, and should be the only size property you need to adjust.  Setting it as a % value will make the chart fluid / responsive, you can use any valid CSS measurement of value (em, px, %).
+	optional - This sets the width of the container for the chart, and should be the only size property you need to adjust.  Setting it as a % value will make the chart fluid / responsive, you can use any valid CSS measurement of value (em, px, %).
 
 	'height'		   = "auto"
 	optional - the height will automatticaly be proportionate to the width, and you should not need to adjust this .
