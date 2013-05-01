@@ -1,9 +1,9 @@
 === Plugin Name ===
 Contributors: Paul van Zyl
-Tags: html5, canvas, charts, chart js, visualisation
+Tags: chart, charts, charting, graph, graphs, graphing, visualisation, visualise data, visualization, visualize data, HTML5, canvas, pie chart, line chart, chart js
 Requires at least: 3.0.1
 Tested up to: 3.5.1
-Stable tag: 0.5.1
+Stable tag: 0.5.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,14 +26,14 @@ Chart.js is dependency free, lightweight (4.5k when minified and gzipped) and of
 
 (above descriptions taken from chartjs.org)
 
-
 ### Features Coming Soon ###
-* Editor admin pop up to make creating beautiful charts faster than you can say user friendly
+* Chart Key tables
+* Chart Widget
+* Editor admin pop up to make creating beautiful charts faster than you can say "user friendly"
 * Color palette themes for quick stylish data
 * Plugin Options for extensive chart control (just for you fiddly folk)
 
 == Installation ==
-# Installation #
 
 ### Easy ###
 1.Search WP charts via plugins > add new, or upload.
@@ -100,7 +100,7 @@ the basic shortcode is `[wp_charts]` which on its own should not produce anythin
 	'canvasheight'     = "625"
 	optional - this will be converted to px, only adjust this up or down if you experience rendering issues.
 
-	'margin'		   = "5px"
+	'margin'		   = "20px"
 	optional - use standard css syntax for the margin, defaults to 5px for top, bottom, left and right.
 
 	'align'            = "alignleft"
@@ -144,8 +144,10 @@ Not since you poked it with your fat sticky finger, but I will eat this here ele
 
 == Changelog ==
 
+0.5.1 - Readme.txt update and assets update
+
 0.4 - First stable release.
 
 == Upgrade Notice ==
 
-Come on Keep up.
+Come on Keep up. WordPress Charts is gooing places.
