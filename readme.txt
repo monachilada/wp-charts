@@ -1,9 +1,9 @@
 === Plugin Name ===
-Contributors: Paul van Zyl
+Contributors: pushplaybang
 Tags: chart, charts, charting, graph, graphs, graphing, visualisation, visualise data, visualization, visualize data, HTML5, canvas, pie chart, line chart, chart js
 Requires at least: 3.0.1
 Tested up to: 3.5.1
-Stable tag: 0.5.2
+Stable tag: 0.6.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,9 +26,21 @@ Chart.js is dependency free, lightweight (4.5k when minified and gzipped) and of
 
 (above descriptions taken from chartjs.org)
 
+### New Features In 0.6.0 ###
+New Shortcode Properties :
+*'animation'
+*'scaleFontSize'
+*'scaleFontColor'
+*'scaleOverride'
+*'scaleSteps'
+*'scaleStepWidth'
+*'scaleStartValue'
+
+Brand new WP Charts Widget, basic options for now, more on there way.
+
 ### Features Coming Soon ###
 * Chart Key tables
-* Chart Widget
+* Additional Widget Options
 * Editor admin pop up to make creating beautiful charts faster than you can say "user friendly"
 * Color palette themes for quick stylish data
 * Plugin Options for extensive chart control (just for you fiddly folk)
@@ -127,12 +139,37 @@ the basic shortcode is `[wp_charts]` which on its own should not produce anythin
 	'pointstrokecolor' = "#FFFFFF"
 	optional -  for line and polararea type charts you can set the point color, though usually looks pretty good with the default.
 
+	'animation'		   => 'true'
+	optional -  turn the load animation for the charts on or off
+
+	'scaleFontSize'    => '12'
+	optional -  adjust the font size of the scale for the charts that display it
+
+	'scaleFontColor'   => '#666'
+	optional -  change the scale font colour
+
+	'scaleOverride'    => 'false'
+	optional -  by default this is turned off, and the script attempts to output an appropriate scale, setting this to true will require the following three properties to be set as well: scaleSteps, scaleStepWidth and scaleStartValue
+
+	'scaleSteps' 	   => 'null'
+	optional -  only applicable if scaleOveride is set to true - the number of steps in the scale
+
+	'scaleStepWidth'   => 'null'
+	optional -  only applicable if scaleOveride is set to true - the value jump used in the scale
+
+	'scaleStartValue'  => 'null'
+	optional -  only applicable if scaleOveride is set to true - the center starting value for the scale
+
+
+### WP Charts Widget  ###
+
+head on over the 'widgets' page in wp admin area (listed under the Appearance menu) and look for the WP Charts widget, the widget is pretty self explanatory and only includes the basic options for now, check the properties above if your not quite sure what each field should be used for.
 
 == Frequently Asked Questions ==
 
 = Are Shortcodes Really User Friendly? =
 
-Short Answer : NO.  But an easy to use admin interface for WP Charts is coming soon. Along with many features to help you quickly produce amazing charts.  In the mean time copy and paste the demo shortcodes and edit them carefully, while they can seem a little difficult they're actually still pretty simple to understand and use.  Its best to paste the shortcode into the html/text editor rather than the visual editor.
+Short Answer : NO.  But an easy to use admin interface for WP Charts will eventually be realised. Along with many features to help you quickly produce amazing charts.  In the mean time copy and paste the demo shortcodes and edit them carefully, while they can seem a little difficult they're actually still pretty simple to understand and use.  Its best to paste the shortcode into the html/text editor rather than the visual editor.
 
 = Are you still going to eat that ? =
 
@@ -144,10 +181,12 @@ Not since you poked it with your fat sticky finger, but I will eat this here ele
 
 == Changelog ==
 
+0.6.0 - Added first extended options to the shortcode including animation on/off, scale font size, scale font colour, scale overirde with custom scale settings.  Secondly added a basic WP Charts Widget.
+
 0.5.1 - Readme.txt update and assets update
 
 0.4 - First stable release.
 
 == Upgrade Notice ==
 
-Come on Keep up. WordPress Charts is gooing places.
+Come on Keep up. WordPress Charts is gooing places.  Get the new shortcode options and some WP Chart widget love.
