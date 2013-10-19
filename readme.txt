@@ -28,18 +28,18 @@ Chart.js is dependency free, lightweight (4.5k when minified and gzipped) and of
 
 ### New Features In 0.6.0 ###
 New Shortcode Properties :
-*'animation'
-*'scaleFontSize'
-*'scaleFontColor'
-*'scaleOverride'
-*'scaleSteps'
-*'scaleStepWidth'
-*'scaleStartValue'
+* 'animation'
+* 'scaleFontSize'
+* 'scaleFontColor'
+* 'scaleOverride'
+* 'scaleSteps'
+* 'scaleStepWidth'
+* 'scaleStartValue'
 
 Brand new WP Charts Widget, basic options for now, more on there way.
 
 ### Features Coming Soon ###
-* Chart Key tables
+* Chart Key tables, next up I swear!
 * Additional Widget Options
 * Editor admin pop up to make creating beautiful charts faster than you can say "user friendly"
 * Color palette themes for quick stylish data
