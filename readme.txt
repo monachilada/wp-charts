@@ -2,7 +2,7 @@
 Contributors: pushplaybang
 Tags: chart, charts, charting, graph, graphs, graphing, visualisation, visualise data, visualization, visualize data, HTML5, canvas, pie chart, line chart, chart js
 Requires at least: 3.0.1
-Tested up to: 3.5.1
+Tested up to: 3.6.1
 Stable tag: 0.6.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -26,15 +26,17 @@ Chart.js is dependency free, lightweight (4.5k when minified and gzipped) and of
 
 (above descriptions taken from chartjs.org)
 
-### New Features In 0.6.0 ###
-New Shortcode Properties :
-* 'animation'
-* 'scaleFontSize'
-* 'scaleFontColor'
-* 'scaleOverride'
-* 'scaleSteps'
-* 'scaleStepWidth'
-* 'scaleStartValue'
+### New Shortcode Properties in WP Charts 0.6.0 ###
+
+* animation
+* scaleFontSize
+* scaleFontColor
+* scaleOverride
+* scaleSteps
+* scaleStepWidth
+* scaleStartValue
+
+### New WP CHarts Widget ###
 
 Brand new WP Charts Widget, basic options for now, more on there way.
 
