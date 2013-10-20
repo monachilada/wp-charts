@@ -3,7 +3,7 @@ Contributors: pushplaybang
 Tags: chart, charts, charting, graph, graphs, graphing, visualisation, visualise data, visualization, visualize data, HTML5, canvas, pie chart, line chart, chart js
 Requires at least: 3.0.1
 Tested up to: 3.6.1
-Stable tag: 0.6.5
+Stable tag: 0.6.6
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -195,4 +195,5 @@ Not since you poked it with your fat sticky finger, but I will eat this here ele
 
 == Upgrade Notice ==
 
-Come on Keep up. WordPress Charts is gooing places.  Get the new shortcode options and some WP Chart widget love.
+Come on Keep up. WordPress Charts is gooing places.  Get the new shortcode options and some WP Chart widget love.Sorry about the flurry of updates - I suck at SVN, should all be up and sorted now.
+
