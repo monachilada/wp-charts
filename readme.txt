@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: pushplaybang
-Tags: chart, charts, charting, graph, graphs, graphing, visualisation, visualise data, visualization, visualize data, HTML5, canvas, pie chart, line chart, chart js
+Tags: chart, charts, charting, graph, graphs, graphing, visualisation, visualise data, visualization, visualize data, HTML5, canvas, pie chart, line chart, chart js, plugin, widget, shortcode
 Requires at least: 3.0.1
 Tested up to: 3.6.1
 Stable tag: 0.6.6
@@ -36,7 +36,7 @@ Chart.js is dependency free, lightweight (4.5k when minified and gzipped) and of
 * scaleStepWidth
 * scaleStartValue
 
-### New WP CHarts Widget ###
+### New WP Charts Widget ###
 
 Brand new WP Charts Widget, basic options for now, more on there way.
 
