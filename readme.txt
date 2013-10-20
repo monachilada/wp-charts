@@ -3,7 +3,7 @@ Contributors: pushplaybang
 Tags: chart, charts, charting, graph, graphs, graphing, visualisation, visualise data, visualization, visualize data, HTML5, canvas, pie chart, line chart, chart js
 Requires at least: 3.0.1
 Tested up to: 3.6.1
-Stable tag: 0.6.0
+Stable tag: 0.6.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,10 @@ Chart.js is dependency free, lightweight (4.5k when minified and gzipped) and of
 ### New WP CHarts Widget ###
 
 Brand new WP Charts Widget, basic options for now, more on there way.
+
+### Latest Fix / Patch ###
+
+I've setup a script to explicitly set the height according to the width in order to keep the dimensions equal, this stops the distortion of the charts in IE.
 
 ### Features Coming Soon ###
 * Chart Key tables, next up I swear!

@@ -3,7 +3,7 @@
 Plugin Name: WordPress Charts
 Plugin URI: http://wordpress.org/plugins/wp-charts/
 Description: Create amazing HTML5 charts easily in WordPress. A flexible and lightweight WordPress chart plugin including 6 customizable chart types (line, bar, pie, radar, polar area and doughnut types) as well as a fallback to provide support for older IE.  Incorporates the fantastic chart.js script : http://www.chartjs.org/.
-Version: 0.6.0
+Version: 0.6.5
 Author:  Paul van Zyl
 Author URI: http://profiles.wordpress.org/pushplaybang/
 */
@@ -46,7 +46,6 @@ function wp_charts_html5_support () {
     			.wp_charts_canvas {
     				width:100%!important;
     				max-width:100%;
-    				height:auto!important;
     			}
     		</style>';
 }
@@ -56,8 +55,16 @@ function wp_charts_html5_support () {
 function wp_charts_load_scripts() {
 
 	if ( !is_Admin() ) {
+		// WP Scripts
+		wp_enqueue_script( 'jquery' );
+
+		// Register plugin Scripts
 		wp_register_script( 'charts-js', plugins_url('/js/Chart.min.js', __FILE__) );
+		wp_register_script( 'wp-chart-functions', plugins_url('/js/functions.js', __FILE__),'jquery','', true );
+
+		// Enqeue those suckers
 		wp_enqueue_script( 'charts-js' );
+		wp_enqueue_script( 'wp-chart-functions' );
 	}
 
 }
@@ -160,7 +167,7 @@ function wp_charts_shortcode( $atts ) {
 
 	// output - covers Pie, Doughnut, and PolarArea
 	// - - - - - - - - - - - - - - - - - - - - - - -
-	$currentchart = '<div class="'.$align.' '.$class.'" style="width:'.$width.';height:'.$height.';margin:'.$margin.';">';
+	$currentchart = '<div class="'.$align.' '.$class.' wp-chart-wrap" style="width:'.$width.';height:'.$height.';margin:'.$margin.';">';
 	$currentchart .= '<canvas id="'.$title.'" height="'.$canvasheight.'" width="'.$canvaswidth.'" class="wp_charts_canvas"></canvas></div>
 	<script>';
 
