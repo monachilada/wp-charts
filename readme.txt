@@ -3,7 +3,7 @@ Contributors: pushplaybang
 Tags: chart, charts, charting, graph, graphs, graphing, visualisation, visualise data, visualization, visualize data, HTML5, canvas, pie chart, line chart, chart js, plugin, widget, shortcode
 Requires at least: 3.0.1
 Tested up to: 3.6.1
-Stable tag: 0.6.6
+Stable tag: 0.6.7
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,12 +29,12 @@ Chart.js is dependency free, lightweight (4.5k when minified and gzipped) and of
 ### New Shortcode Properties in WP Charts 0.6.0 ###
 
 * animation
-* scaleFontSize
-* scaleFontColor
-* scaleOverride
-* scaleSteps
-* scaleStepWidth
-* scaleStartValue
+* scalefontsize
+* scalefontcolor
+* scaleoverride
+* scalesteps
+* scalestepwidth
+* scalestartvalue
 
 ### New WP Charts Widget ###
 
@@ -166,6 +166,8 @@ the basic shortcode is `[wp_charts]` which on its own should not produce anythin
 	'scaleStartValue'  => 'null'
 	optional -  only applicable if scaleOveride is set to true - the center starting value for the scale
 
+	Example Usage with scale options
+	[wp_charts title="linechart" type="line" align="alignright" margin="5px 20px" datasets="40,43,61,50 next 33,15,40,22" labels="one,two,three,four" scaleoverride="true" scalesteps="5" scalestepwidth="10" scalestartvalue="0"]
 
 ### WP Charts Widget  ###
 
@@ -176,6 +178,16 @@ head on over the 'widgets' page in wp admin area (listed under the Appearance me
 = Are Shortcodes Really User Friendly? =
 
 Short Answer : NO.  But an easy to use admin interface for WP Charts will eventually be realised. Along with many features to help you quickly produce amazing charts.  In the mean time copy and paste the demo shortcodes and edit them carefully, while they can seem a little difficult they're actually still pretty simple to understand and use.  Its best to paste the shortcode into the html/text editor rather than the visual editor.
+
+= How do you use the new scale properties? =
+
+Its quite easy actually, have a look at the example shortcode below :
+
+	[wp_charts title="linechart" type="line" align="alignright" margin="5px 20px" datasets="40,43,61,50 next 33,15,40,22" labels="one,two,three,four" scaleoverride="true" scalesteps="5" scalestepwidth="10" scalestartvalue="0"]
+
+= canvas Height ? width ? canvas width ? responsive charts ? whats going on ? =
+
+The canvas height and width properties set the actual canvas drawing area (for example if you're displayig a huge chart set these values higher to avoid aliasing / poor rendering), the height and width properties set the chart container height and width, and I use CSS and JS to set the canvas to 100%, measure the width and set the height to an equal value.  This is its possible to have these charts responsive.
 
 = Are you still going to eat that ? =
 
@@ -195,5 +207,5 @@ Not since you poked it with your fat sticky finger, but I will eat this here ele
 
 == Upgrade Notice ==
 
-Come on Keep up. WordPress Charts is gooing places.  Get the new shortcode options and some WP Chart widget love.Sorry about the flurry of updates - I suck at SVN, should all be up and sorted now.
+Come on Keep up. WordPress Charts is going places.  squashing bugs! bugs bugs bugs!!
 

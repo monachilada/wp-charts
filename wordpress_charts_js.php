@@ -3,7 +3,7 @@
 Plugin Name: WordPress Charts
 Plugin URI: http://wordpress.org/plugins/wp-charts/
 Description: Create amazing HTML5 charts easily in WordPress. A flexible and lightweight WordPress chart plugin including 6 customizable chart types (line, bar, pie, radar, polar area and doughnut types) as well as a fallback to provide support for older IE.  Incorporates the fantastic chart.js script : http://www.chartjs.org/.
-Version: 0.6.6
+Version: 0.6.7
 Author:  Paul van Zyl
 Author URI: http://profiles.wordpress.org/pushplaybang/
 */
@@ -142,12 +142,12 @@ function wp_charts_shortcode( $atts ) {
 			'fillopacity'      => '0.7',
 			'pointstrokecolor' => '#FFFFFF',
 			'animation'		   => 'true',
-			'scaleFontSize'    => '12',
-			'scaleFontColor'   => '#666',
-			'scaleOverride'    => 'false',
-			'scaleSteps' 	   => 'null',
-			'scaleStepWidth'   => 'null',
-			'scaleStartValue'  => 'null'
+			'scalefontsize'    => '12',
+			'scalefontcolor'   => '#666',
+			'scaleoverride'    => 'false',
+			'scalesteps' 	   => 'null',
+			'scalestepwidth'   => 'null',
+			'scalestartvalue'  => 'null'
 		), $atts )
 	);
 
@@ -175,20 +175,20 @@ function wp_charts_shortcode( $atts ) {
 	$currentchart .= 'var '.$title.'Ops = {
 		animation: '.$animation.',';
 
-	if ($type !== 'Pie' && $type !== 'Doughnut' ) {
-		$currentchart .=	'scaleFontSize: '.$scaleFontSize.',';
-		$currentchart .=	'scaleFontColor: "'.$scaleFontColor.'",';
-		$currentchart .=    'scaleOverride:'   .$scaleOverride.',';
-		$currentchart .=    'scaleSteps:' 	   .$scaleSteps.',';
-		$currentchart .=    'scaleStepWidth:'  .$scaleStepWidth.',';
-		$currentchart .=    'scaleStartValue:' .$scaleStartValue;
+	if ($type == 'Line' || $type == 'Radar' || $type == 'Bar' || $type == 'PolarArea') {
+		$currentchart .=	'scaleFontSize: '.$scalefontsize.',';
+		$currentchart .=	'scaleFontColor: "'.$scalefontcolor.'",';
+		$currentchart .=    'scaleOverride:'   .$scaleoverride.',';
+		$currentchart .=    'scaleSteps:' 	   .$scalesteps.',';
+		$currentchart .=    'scaleStepWidth:'  .$scalestepwidth.',';
+		$currentchart .=    'scaleStartValue:' .$scalestartvalue;
 	}
 
 	// end options array
 	$currentchart .= '}; ';
 
 	// start the js arrays correctly depending on type
-	if ($type == 'Line' || $type == 'Radar' || $type == 'Bar') {
+	if ($type == 'Line' || $type == 'Radar' || $type == 'Bar' ) {
 
 		wp_charts_compare_fill($datasets, $colors);
 		$total    = count($datasets);
