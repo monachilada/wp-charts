@@ -42,21 +42,22 @@ Brand new WP Charts Widget, basic options for now, more on there way.
 
 ### Latest Fix / Patch ###
 
-I've setup a script to explicitly set the height according to the width in order to keep the dimensions equal, this stops the distortion of the charts in IE.
+I've setup a script to explicitly set the height according to the width in order to keep the dimensions equal, this stops the distortion of the charts in IE.  A side effect is that you cannot currently have charts that are not square in proportions, which obviously will not do, so I'll be adding a proprtions property soonest.
 
 ### Features Coming Soon ###
-* Chart Key tables, next up I swear!
-* Additional Widget Options
+* Proportions to allow for non square charts.
+* Chart Key tables, next big change up I swear!
+* Additional Widget Options.
 * Editor admin pop up to make creating beautiful charts faster than you can say "user friendly"
 * Color palette themes for quick stylish data
-* Plugin Options for extensive chart control (just for you fiddly folk)
+* Plugin Options for extensive chart control by setting your own sensible defaults (just for you fiddly folk)
 
 == Installation ==
 
 ### Easy ###
-1.Search WP charts via plugins > add new, or upload.
+1.Search WP charts via plugins > add new.
 2.find the plugin listed and click activate.
-3. For Now  - Use the Shortcodes for fun and profit
+3. Use the Shortcodes and widget for fun and profit
 
 ### Not So Easy ###
 1. Fire up your favourite FTP and upload `wp_charts folder` to the `/wp-content/plugins/` directory
@@ -68,11 +69,12 @@ I've setup a script to explicitly set the height according to the width in order
 ### Basic Concept ###
 the basic shortcode is `[wp_charts]` which on its own should not produce anything. you will need to add properities to the shotcode for it to work.  The format for shortcode properties is `property="somthing"`.  for example, each chart needs a title and a type, so we would start by putting the following into the wordpress editor : `[wp_charts title="any title" type="pie"]`.  Different Charts require different specific basic properties, as described below.  Further you can see a full list of properties with descriptions as well.
 
-###Important ###
+### Important ###
 * Every chart reuqires a type, title and data or datasets attributes.
 * if you're using a Pie, Doughnut, or PolarArea chart type you must use the data shortcode attribute (as these are 1 dimensional charts), where as if you're using the Bar, Line or Radar chart types you must use the datasets attribute (as these types are multidimentional).  Also note that datasets are seperated using the next keyword as shown in the examples below.
 
 # Example Shortcode Usage #
+
 ``
 	Pie Chart
 	[wp_charts title="mypie" type="pie" align="alignright" margin="5px 20px" data="10,32,50,25,5"]
@@ -100,6 +102,7 @@ the basic shortcode is `[wp_charts]` which on its own should not produce anythin
 
 # All Shortcode Attributes #
 
+``
 	'type'             = "pie"
 	choose from pie, doughnut, radar, polararea, bar, line
 
@@ -198,6 +201,12 @@ Not since you poked it with your fat sticky finger, but I will eat this here ele
 1. All Charts being used on a single page, in the default 2012 theme.
 
 == Changelog ==
+
+0.6.7 - Fix for new shortcode properties - bad camel case formatting sorted out - readme.txt update
+
+0.6.6 - Proper update of all features.
+
+0.6.5 - Added js fix for IE stretching charts, with more robust responsiveness - broken release becuase I failed hard at SVN.
 
 0.6.0 - Added first extended options to the shortcode including animation on/off, scale font size, scale font colour, scale overirde with custom scale settings.  Secondly added a basic WP Charts Widget.
 
