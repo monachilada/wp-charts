@@ -3,7 +3,7 @@
 Plugin Name: WordPress Charts
 Plugin URI: http://wordpress.org/plugins/wp-charts/
 Description: Create amazing HTML5 charts easily in WordPress. A flexible and lightweight WordPress chart plugin including 6 customizable chart types (line, bar, pie, radar, polar area and doughnut types) as well as a fallback to provide support for older IE.  Incorporates the fantastic chart.js script : http://www.chartjs.org/.
-Version: 0.6.7
+Version: 0.6.8
 Author:  Paul van Zyl
 Author URI: http://profiles.wordpress.org/pushplaybang/
 */
@@ -17,6 +17,7 @@ Author URI: http://profiles.wordpress.org/pushplaybang/
  * This is an add-on for WordPress
  * http://wordpress.org/
  *
+ *
  * **********************************************************************
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,23 +30,34 @@ Author URI: http://profiles.wordpress.org/pushplaybang/
  * GNU General Public License for more details.
  * **********************************************************************
  *
+ *
  */
 
 
-
+include 'wp_charts_widget.php';
 
 
 // Add IE Fallback for HTML5 and canvas
 // - - - - - - - - - - - - - - - - - - - - - - -
 function wp_charts_html5_support () {
     echo '<!--[if lte IE 8]>';
-    echo '<script src="'.plugins_url( '/js/excanvas.compiled.js', __FILE__ ).'"</script>';
+    echo '<script src="'.plugins_url( '/js/excanvas.compiled.js', __FILE__ ).'"></script>';
     echo '<![endif]-->';
     echo '	<style>
     			/*wp_charts_js responsive canvas CSS override*/
     			.wp_charts_canvas {
     				width:100%!important;
     				max-width:100%;
+    			}
+
+    			@media screen and (max-width:480px) {
+    				div.wp-chart-wrap {
+    					width:100%!important;
+    					float: none!important;
+						margin-left: auto!important;
+						margin-right: auto!important;
+						text-align: center;
+    				}
     			}
     		</style>';
 }
@@ -68,9 +80,6 @@ function wp_charts_load_scripts() {
 	}
 
 }
-
-add_action( "wp_enqueue_scripts", "wp_charts_load_scripts" );
-add_action('wp_head', 'wp_charts_html5_support');
 
 // make sure there are the right number of colors in the colour array
 // - - - - - - - - - - - - - - - - - - - - - - -
@@ -109,6 +118,8 @@ if (!function_exists( "wp_charts_hex2rgb" )) {
 	}
 }
 
+// wp_charts_trailing_comma
+// - - - - - - - - - - - - - - - - - - - - - - -
 if (!function_exists('wp_charts_trailing_comma')) {
 	function wp_charts_trailing_comma($incrementor, $count, &$subject) {
 		$stopper = $count - 1;
@@ -133,6 +144,7 @@ function wp_charts_shortcode( $atts ) {
 			'width'			   => '48%',
 			'height'		   => 'auto',
 			'margin'		   => '5px',
+			'relativewidth'	   => '1',
 			'align'            => '',
 			'class'			   => '',
 			'labels'           => '',
@@ -167,8 +179,8 @@ function wp_charts_shortcode( $atts ) {
 
 	// output - covers Pie, Doughnut, and PolarArea
 	// - - - - - - - - - - - - - - - - - - - - - - -
-	$currentchart = '<div class="'.$align.' '.$class.' wp-chart-wrap" style="width:'.$width.';height:'.$height.';margin:'.$margin.';">';
-	$currentchart .= '<canvas id="'.$title.'" height="'.$canvasheight.'" width="'.$canvaswidth.'" class="wp_charts_canvas"></canvas></div>
+	$currentchart = '<div class="'.$align.' '.$class.' wp-chart-wrap" style="width:'.$width.'; height:'.$height.';margin:'.$margin.';" data-proportion="'.$relativewidth.'">';
+	$currentchart .= '<canvas id="'.$title.'" height="'.$canvasheight.'" width="'.$canvaswidth.'" class="wp_charts_canvas" data-proportion="'.$relativewidth.'"></canvas></div>
 	<script>';
 
 		// output Options
@@ -253,158 +265,12 @@ function wp_charts_shortcode( $atts ) {
 	return $currentchart;
 }
 
-add_shortcode( 'wp_charts', 'wp_charts_shortcode' );
+function wp_charts_kickoff() {
+	add_action( "wp_enqueue_scripts", "wp_charts_load_scripts" );
+	add_action('wp_head', 'wp_charts_html5_support');
+	add_shortcode( 'wp_charts', 'wp_charts_shortcode' );
+	add_action('widgets_init', create_function('', 'return register_widget("wp_charts_widget");'));
+}
 
-
-// WP Charts Widget
-// - - - - - - - - - - - - - - - - - - - - - - -
-class wp_charts_widget extends WP_Widget {
-
-    /* constructor
-    - - - - - - - - - */
-    function wp_charts_widget() {
-        parent::WP_Widget(false, $name = 'WordPress Charts');
-    }
-
-    /* Output the Widget
-    - - - - - - - - - - */
-    function widget($args, $instance) {
-        extract( $args );
-		// global $posttypes;
-        $title          = isset($instance['title']) ? apply_filters('widget_title', $instance['title']) : "";
-		$chartid        = $instance['chartid'];
-		$pretext        = isset($instance['pretext'] ) ? apply_filters('widget_title', $instance['pretext']) : "";
-		$chart_type     = $instance['chart_type'];
-		$labels         = $instance['labels'];
-		$data           = $instance['data'];
-		$colors    		= $instance['colors'];
-		$posttext        = isset($instance['posttext'] ) ? apply_filters('widget_title', $instance['posttext']) : "";
-
-        // start widget
-         echo $before_widget;
-
-		// output the title
-		if ( $title != "" ) {
-			echo $before_title . $title . $after_title;
-		}
-
-        // output chart intro
-        if ( !empty($pretext)) {
-			echo wpautop($pretext);
-		}
-
-        // output the Chart
-		echo do_shortcode(
-			"[wp_charts
-					title  = '$chartid'
-					labels ='$labels'
-					type   = '$chart_type'
-					data   = '$data'
-					colors = '$colors'
-					width = '100%'
-				]"
-			);
-
-		// output Chart Description
-	    if ( !empty($posttext)) {
-			echo wpautop($posttext);
-		}
-
-		// end wdget
-    	echo $after_widget;
-
-    }
-
-    /* Update the Widget
-    - - - - - - - - - - - - */
-    function update($new_instance, $old_instance) {
-    	$instance = $old_instance;
-		$instance['title'] = ($new_instance['title']);
-		$instance['chartid'] = ($new_instance['chartid']);
-		$instance['pretext']        = strip_tags($new_instance['pretext']);
-		$instance['chart_type'] = ($new_instance['chart_type']);
-		$instance['labels'] = ($new_instance['labels']);
-		$instance['data'] = ($new_instance['data']);
-		$instance['colors'] = ($new_instance['colors']);
-		$instance['posttext']        = strip_tags($new_instance['posttext']);
-        return $instance;
-    }
-
-    /* Widget Form
-    - - - - - - - - - */
-    function form($instance) {
-		$title          = isset( $instance['title'] ) 		? esc_attr($instance['title']) 			: "";
-		$pretext        = isset( $instance['pretext'] ) 	? esc_attr($instance['pretext']) 		: "";
-		$chartid        = isset( $instance['chartid'] ) 	? esc_attr($instance['chartid']) 		: "";
-		$chart_type     = isset( $instance['chart_type'] ) 	? esc_attr($instance['chart_type'])		: "";
-		$labels         = isset( $instance['labels'] ) 		? esc_attr($instance['labels']) 		: "";
-		$data           = isset( $instance['data'] ) 		? esc_attr($instance['data']) 			: "";
-		$colors         = isset( $instance['colors'] ) 		? esc_attr($instance['colors']) 		: "";
-		$posttext       = isset( $instance['posttext'] ) 	? esc_attr($instance['posttext']) 		: "";
-
-        ?>
-        <!-- Widget title -->
-        <p>
-          <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Widget Title:', 'nona'); ?></label>
-          <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
-        </p>
-
-		<!-- Chart ID -->
-		<p>
-          <label for="<?php echo $this->get_field_id('chartid'); ?>"><?php _e('Chart Title:', 'nona'); ?></label>
-          <input class="widefat" id="<?php echo $this->get_field_id('chartid'); ?>" name="<?php echo $this->get_field_name('chartid'); ?>" type="text" value="<?php echo $chartid; ?>" />
-          <small><strong>IMPORTANT!</strong> Your Chart must have a unique title to be indentified by, this title <strong>WILL NOT</strong> be displayed.</small>
-        </p>
-
-        <!-- PreText -->
-        <p>
-          <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Introduction:', 'nona'); ?></label>
-          <input class="widefat" id="<?php echo $this->get_field_id('pretext'); ?>" name="<?php echo $this->get_field_name('pretext'); ?>" type="text" value="<?php echo $pretext; ?>" />
-        </p>
-
-        <!-- type -->
-        <p>
-			<label for="<?php echo $this->get_field_id('chart_type'); ?>"><?php _e('Type', 'nona'); ?></label>
-			<select name="<?php echo $this->get_field_name('chart_type'); ?>" id="<?php echo $this->get_field_id('chart_type'); ?>" class="widefat">
-				<?php
-				$options = array('Pie', 'Doughnut', 'Radar', 'line', 'Bar', 'PolarArea');
-				foreach ($options as $option) {
-					echo '<option value="' . $option . '" id="' . $option . '"', $chart_type == $option ? ' selected="selected"' : '', '>', $option, '</option>';
-				}
-			?>
-		</select>
-        </p>
-        <!-- labels -->
-		<p>
-          <label for="<?php echo $this->get_field_id('labels'); ?>"><?php _e('Labels, separated by commas:', 'nona'); ?></label>
-          <input class="widefat" id="<?php echo $this->get_field_id('labels'); ?>" name="<?php echo $this->get_field_name('labels'); ?>" type="text" value="<?php echo $labels; ?>" />
-        </p>
-
-        <!-- data & datasets -->
-		<p>
-          <label for="<?php echo $this->get_field_id('data'); ?>"><?php _e('Data or Datasets', 'nona'); ?></label>
-          <input class="widefat" id="<?php echo $this->get_field_id('data'); ?>" name="<?php echo $this->get_field_name('data'); ?>" type="text" value="<?php echo $data; ?>" />
-          <small>If you're using the <strong><em>bar, line</em></strong> or <strong><em>radar</em></strong> chart type, you must write your comparative datasets divided by the <strong><em>next</em></strong> keyword eg: 0,0,0 next 0,0,0 etc.</small>
-        </p>
-
-        <!-- Custom Colors -->
-        <p>
-          <label for="<?php echo $this->get_field_id('colors'); ?>"><?php _e('Colors, separated by commas:', 'nona'); ?></label>
-          <input class="widefat" id="<?php echo $this->get_field_id('colors'); ?>" name="<?php echo $this->get_field_name('colors'); ?>" type="text" value="<?php echo $colors; ?>" />
-        </p>
-        <!-- Post Text -->
-        <p>
-          <label for="<?php echo $this->get_field_id('posttext'); ?>"><?php _e('Chart Description:', 'nona'); ?></label>
-          <input class="widefat" id="<?php echo $this->get_field_id('posttext'); ?>" name="<?php echo $this->get_field_name('posttext'); ?>" type="text" value="<?php echo $posttext; ?>" />
-        </p>
-
-    <?php } // End Form Function
-
-} // End Class
-
-add_action('widgets_init', create_function('', 'return register_widget("wp_charts_widget");'));
-
-
-
-
+add_action('init', 'wp_charts_kickoff');
 

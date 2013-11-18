@@ -1,9 +1,9 @@
-=== Plugin Name ===
+=== WordPress Charts ===
 Contributors: pushplaybang
 Tags: chart, charts, charting, graph, graphs, graphing, visualisation, visualise data, visualization, visualize data, HTML5, canvas, pie chart, line chart, chart js, plugin, widget, shortcode
 Requires at least: 3.0.1
 Tested up to: 3.6.1
-Stable tag: 0.6.7
+Stable tag: 0.6.8
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -201,6 +201,10 @@ Not since you poked it with your fat sticky finger, but I will eat this here ele
 1. All Charts being used on a single page, in the default 2012 theme.
 
 == Changelog ==
+
+0.6.8  - hotfix
+* for missing script closing tag that killed sites in IE8 - sorry
+* experimental proportions feature for non square responsive charts, use ````relativewidth```` property (ratio of width to height - for square charts the default value is 1, 1.5 would result in a chart 1.5 times as wide as the chart is high)
 
 0.6.7 - Fix for new shortcode properties - bad camel case formatting sorted out - readme.txt update
 
