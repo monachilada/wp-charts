@@ -3,7 +3,7 @@
 Plugin Name: WordPress Charts
 Plugin URI: http://wordpress.org/plugins/wp-charts/
 Description: Create amazing HTML5 charts easily in WordPress. A flexible and lightweight WordPress chart plugin including 6 customizable chart types (line, bar, pie, radar, polar area and doughnut types) as well as a fallback to provide support for older IE.  Incorporates the fantastic chart.js script : http://www.chartjs.org/.
-Version: 0.6.8
+Version: 0.6.9
 Author:  Paul van Zyl
 Author URI: http://profiles.wordpress.org/pushplaybang/
 */
@@ -179,7 +179,7 @@ function wp_charts_shortcode( $atts ) {
 
 	// output - covers Pie, Doughnut, and PolarArea
 	// - - - - - - - - - - - - - - - - - - - - - - -
-	$currentchart = '<div class="'.$align.' '.$class.' wp-chart-wrap" style="width:'.$width.'; height:'.$height.';margin:'.$margin.';" data-proportion="'.$relativewidth.'">';
+	$currentchart = '<div class="'.$align.' '.$class.' wp-chart-wrap" style="max-width: 100%; width:'.$width.'; height:'.$height.';margin:'.$margin.';" data-proportion="'.$relativewidth.'">';
 	$currentchart .= '<canvas id="'.$title.'" height="'.$canvasheight.'" width="'.$canvaswidth.'" class="wp_charts_canvas" data-proportion="'.$relativewidth.'"></canvas></div>
 	<script>';
 
@@ -269,7 +269,6 @@ function wp_charts_kickoff() {
 	add_action( "wp_enqueue_scripts", "wp_charts_load_scripts" );
 	add_action('wp_head', 'wp_charts_html5_support');
 	add_shortcode( 'wp_charts', 'wp_charts_shortcode' );
-	add_action('widgets_init', create_function('', 'return register_widget("wp_charts_widget");'));
 }
 
 add_action('init', 'wp_charts_kickoff');

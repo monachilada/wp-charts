@@ -14,14 +14,14 @@ class wp_charts_widget extends WP_Widget {
     function widget($args, $instance) {
         extract( $args );
 		// global $posttypes;
-        $title          = isset($instance['title']) ? apply_filters('widget_title', $instance['title']) : "";
+    $title          = isset($instance['title']) ? apply_filters('widget_title', $instance['title']) : "";
 		$chartid        = $instance['chartid'];
 		$pretext        = isset($instance['pretext'] ) ? apply_filters('widget_title', $instance['pretext']) : "";
 		$chart_type     = $instance['chart_type'];
 		$labels         = $instance['labels'];
 		$data           = $instance['data'];
-		$colors    		= $instance['colors'];
-		$posttext        = isset($instance['posttext'] ) ? apply_filters('widget_title', $instance['posttext']) : "";
+		$colors    		  = $instance['colors'];
+		$posttext       = isset($instance['posttext'] ) ? apply_filters('widget_title', $instance['posttext']) : "";
 
         // start widget
          echo $before_widget;
@@ -144,3 +144,5 @@ class wp_charts_widget extends WP_Widget {
     <?php } // End Form Function
 
 } // End Class
+
+add_action('widgets_init', create_function('', 'return register_widget("wp_charts_widget");'));
