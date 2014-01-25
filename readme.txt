@@ -3,7 +3,7 @@ Contributors: pushplaybang
 Tags: chart, charts, charting, graph, graphs, graphing, visualisation, visualise data, visualization, visualize data, HTML5, canvas, pie chart, line chart, chart js, plugin, widget, shortcode
 Requires at least: 3.8
 Tested up to: 3.8
-Stable tag: 0.6.9
+Stable tag: 0.6.9.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
