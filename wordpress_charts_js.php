@@ -139,27 +139,30 @@ function wp_charts_shortcode( $atts ) {
 		array(
 			'type'             => 'pie',
 			'title'            => 'chart',
-			'canvaswidth'      => '625',
-			'canvasheight'     => '625',
-			'width'			   => '48%',
+			'canvaswidth'      => '606',
+			'canvasheight'     => '606',
+			'width'			   => '100%',
 			'height'		   => 'auto',
-			'margin'		   => '5px',
+			'margin'		   => '0',
 			'relativewidth'	   => '1',
 			'align'            => '',
 			'class'			   => '',
 			'labels'           => '',
 			'data'             => '30,50,100',
 			'datasets'         => '30,50,100 next 20,90,75',
-			'colors'           => '#69D2E7,#E0E4CC,#F38630,#96CE7F,#CEBC17,#CE4264',
-			'fillopacity'      => '0.7',
-			'pointstrokecolor' => '#FFFFFF',
+			'colors'           => '#62BD19,#235937,#DBE8C4',
+			'fillopacity'      => '1',
+			'pointstrokecolor' => '#235937',
 			'animation'		   => 'true',
 			'scalefontsize'    => '12',
-			'scalefontcolor'   => '#666',
+			'scalefontcolor'   => '#3e3f3f',
 			'scaleoverride'    => 'false',
 			'scalesteps' 	   => 'null',
-			'scalestepwidth'   => 'null',
-			'scalestartvalue'  => 'null'
+			'scalestepwidth'   => 'null',			
+			'scalestartvalue'   => 'null',
+			//Line chart stuff
+			'beziercurve'	   => 'true',		//If we don't want curved lines in line graphs
+			'datasetfill'	   => 'false',		//If we don't want to fill underneath the line
 		), $atts )
 	);
 
@@ -188,12 +191,17 @@ function wp_charts_shortcode( $atts ) {
 		animation: '.$animation.',';
 
 	if ($type == 'Line' || $type == 'Radar' || $type == 'Bar' || $type == 'PolarArea') {
-		$currentchart .=	'scaleFontSize: '.$scalefontsize.',';
-		$currentchart .=	'scaleFontColor: "'.$scalefontcolor.'",';
-		$currentchart .=    'scaleOverride:'   .$scaleoverride.',';
-		$currentchart .=    'scaleSteps:' 	   .$scalesteps.',';
-		$currentchart .=    'scaleStepWidth:'  .$scalestepwidth.',';
-		$currentchart .=    'scaleStartValue:' .$scalestartvalue;
+		$currentchart .=	'scaleFontSize: '.$scalefontsize;
+		$currentchart .=	',scaleFontColor: "'.$scalefontcolor.'"';
+		$currentchart .=    ',scaleOverride:'   .$scaleoverride;
+		$currentchart .=    ',scaleSteps:' 	   .$scalesteps;
+		$currentchart .=    ',scaleStepWidth:'  .$scalestepwidth;
+		$currentchart .=    ',scaleStartValue:' .$scalestartvalue;
+	}
+	
+	if ($type == 'Line') {
+		$currentchart .=	',bezierCurve: '.$beziercurve;			//If we don't want curved lines in line graphs
+		$currentchart .=	',datasetFill: '.$datasetfill;			//If we don't want to fill underneath the line
 	}
 
 	// end options array
