@@ -139,8 +139,8 @@ function wp_charts_shortcode( $atts ) {
 		array(
 			'type'             => 'pie',
 			'title'            => 'chart',
-			'canvaswidth'      => '606',
-			'canvasheight'     => '606',
+			'canvaswidth'      => '625',
+			'canvasheight'     => '625',
 			'width'			   => '100%',
 			'height'		   => 'auto',
 			'margin'		   => '0',
